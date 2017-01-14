@@ -6,7 +6,7 @@ A JUnit test reporter for Jest.
 $ npm i -D jest-junit-reporter
 ```
 
-## Useage
+## Usage
 In your `package.json` file include a `"jest"` config section and specify the `"testResultsProcessor"`:
 ```json
 {
