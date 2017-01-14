@@ -20,8 +20,8 @@ class Testsuite {
     result.testResults
       .filter(result => (result.status !== 'pending'))
       .forEach(result => this.testsuite.push(new Testcase(result)));
-      this.testsuite.push({ 'system-out': {} });
-      this.testsuite.push({ 'system-err': {} });
+    this.testsuite.push({ 'system-out': {} });
+    this.testsuite.push({ 'system-err': {} });
   }
 }
 
