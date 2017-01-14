@@ -1,0 +1,30 @@
+{
+  "name": "jest-junit-reporter",
+  "version": "0.1.0",
+  "description": "A JUnit test report formatter for Jest.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "jest",
+    "junit",
+    "reporter"
+  ],
+  "author": {
+    "name": "Michael Allen",
+    "email": "michael.lee.allen@gmail.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "xml": "^1.0.1"
+  },
+  "devDependencies": {
+    "jest": "^18.1.0",
+    "libxml-xsd": "^0.5.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testRegex": "(((\\.|/)(spec))\\.js?$)"
+  }
+}
