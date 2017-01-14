@@ -2,7 +2,11 @@ const Testcase = require('./Testcase');
 
 class Testsuite {
   constructor (id, result) {
-    this.testsuite = [{
+    let testcases = result.testResults
+      .filter(result => (result.status !== 'pending'))
+      .map(result => new Testcase(result));
+
+    let suite = {
       _attr: {
         id,
         name: result.testFilePath,
@@ -14,14 +18,14 @@ class Testsuite {
         time: (result.perfStats.end - result.perfStats.start) / 1000,
         timestamp: new Date(result.perfStats.start).toISOString().slice(0, -5)
       }
-    }];
+    };
 
-    this.testsuite.push({ properties: [] });
-    result.testResults
-      .filter(result => (result.status !== 'pending'))
-      .forEach(result => this.testsuite.push(new Testcase(result)));
-    this.testsuite.push({ 'system-out': {} });
-    this.testsuite.push({ 'system-err': {} });
+    this.testsuite = [suite, { properties: [] }]
+      .concat(
+        testcases,
+        { 'system-out': {} },
+        { 'system-err': {} }
+      );
   }
 }
 
