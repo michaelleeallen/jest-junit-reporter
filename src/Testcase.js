@@ -2,19 +2,18 @@ const Failure = require('./Failure');
 
 class Testcase {
   constructor (result) {
-    this.testcase = [
+    let failures = result.failureMessages.map(message => new Failure(message));
+    let testCase = [
       {
         _attr: {
-          classname: result.ancestorTitles.pop(),
+          classname: result.ancestorTitles.pop() || result.title,
           name: result.title,
           time: 0
         }
       }
     ];
 
-    if (result.failureMessages.length) {
-      result.failureMessages.forEach(message => this.testcase.push(new Failure(message)));
-    }
+    this.testcase = testCase.concat(failures);
   }
 }
 

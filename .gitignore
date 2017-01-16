@@ -1,4 +1,6 @@
 node_modules
-test-report.xml
 coverage
+.idea
+.vscode
+test-report.xml
 *.log
