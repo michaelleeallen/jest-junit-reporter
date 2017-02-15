@@ -26,3 +26,16 @@ it('should produce a <failure>', () => {
   const expected = `<testcase classname="foo" name="should foo bar" time="0"><failure message="Assertion error" type="AssertionError"></failure></testcase>`;
   expect(report).toEqual(expected);
 });
+
+it('should produce a <skipped>', () => {
+  const testcase = {
+    title: 'should foo bar',
+    status: 'pending',
+    ancestorTitles: ['boo', 'foo'],
+    failureMessages: []
+  };
+  const result = new Testcase(testcase);
+  const report = xml(result);
+  const expected = `<testcase classname="foo" name="should foo bar" time="0"><skipped/></testcase>`;
+  expect(report).toEqual(expected);
+});

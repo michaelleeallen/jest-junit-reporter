@@ -13,6 +13,10 @@ class Testcase {
       }
     ];
 
+    if (result.status === 'pending') {
+      testCase.push({ skipped: {} });
+    }
+
     this.testcase = testCase.concat(failures);
   }
 }
