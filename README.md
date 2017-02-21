@@ -16,7 +16,7 @@ In your `package.json` file include a `"jest"` config section and specify the `"
 }
 ```
 
-The reporter will generate a `test-results.xml` file in the project root. If you need to specify a different location(e.g., for a CI server) then set the environment variable `TEST_REPORT_PATH` to the desired location.
+The reporter will generate a `test-results.xml` file in the project root. If you need to specify a different location(e.g., for a CI server) then set the environment variable `TEST_REPORT_PATH` to the desired location. If you need to specify a different file name other than `test-results.xml`, you can set the environment variable `TEST_REPORT_FILENAME` to the desired file name.
 
 ## LICENSE
 [MIT](LICENSE)

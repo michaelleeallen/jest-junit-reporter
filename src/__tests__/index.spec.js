@@ -43,3 +43,25 @@ it('should return given test results', () => {
   expect(returnedResults).toEqual(mock);
 });
 
+describe('reporter file name', () => {
+  const filename = 'another-report.xml';
+
+  beforeEach(() => {
+    // remove default and possible test report file if they exist.
+    fs.unlink(`${cwd}/test-report.xml`);
+    fs.unlink(`${cwd}/${filename}`);
+    process.env.TEST_REPORT_FILENAME = filename;
+  });
+
+  afterEach(() => {
+    fs.unlink(`${cwd}/${filename}`);
+    delete process.env.TEST_REPORT_FILENAME;
+  });
+
+  it('should produce a report with desired file name', () => {
+    console.log(process.env.TEST_REPORT_FILENAME);
+    reporter(mock);
+    expect(fs.existsSync(`${cwd}/test-report.xml`)).toBeFalsy();
+    expect(fs.existsSync(`${cwd}/${filename}`)).toBeTruthy();
+  });
+});
