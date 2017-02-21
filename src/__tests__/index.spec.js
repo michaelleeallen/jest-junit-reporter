@@ -4,6 +4,7 @@ const cwd = process.cwd();
 const reporter = require('../../index');
 const { failedCase, pendingCase, passingCase } = require('./fixtures/testcase');
 const junitXsd = fs.readFileSync(`${__dirname}/fixtures/junit.xsd`, {encoding: 'utf-8'});
+const junit4Xsd = fs.readFileSync(`${__dirname}/fixtures/junit4.xsd`, {encoding: 'utf-8'});
 const mock = {
   "success": true,
   "startTime": Date.now(),
@@ -30,10 +31,16 @@ const mock = {
   ]
 };
 
+const validateXml = (junitXsd, xml) => {
+  const schema = xsd.parse(junitXsd);
+  return schema.validate(xml);
+}
+
 it('should produce a valid JUnit XML report', () => {
   reporter(mock);
   const report = fs.readFileSync(`${cwd}/test-report.xml`, { encoding: 'utf-8' });
-  const schema = xsd.parse(junitXsd);
-  const errors = schema.validate(report);
-  expect(errors).toBeNull();
+  const errors = validateXml(junitXsd, report);
+  const errors4 = validateXml(junit4Xsd, report);
+  // The XML should comply ethier JUnit XSD or JUnit4 XSD
+  expect(!!errors && !!errors4).toBeFalsy();
 });
