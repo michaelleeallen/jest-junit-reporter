@@ -4,6 +4,9 @@ node_js:
   - "7"
   - "6"
 
+before_script:
+  - npm explore npm -g -- npm install node-gyp@latest
+  
 deploy:
   provider: npm
   api_key: $NPM_AUTH_TOKEN
