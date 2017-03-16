@@ -1,6 +1,6 @@
 {
   "name": "jest-junit-reporter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JUnit test report formatter for Jest.",
   "main": "index.js",
   "scripts": {
