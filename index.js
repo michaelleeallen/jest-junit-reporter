@@ -7,4 +7,5 @@ module.exports = (results) => {
   const testSuites = new Testsuites(results);
   const data = xml(testSuites, { declaration: true, indent: '  ' });
   fs.writeFileSync(`${out}/test-report.xml`, data);
+  return results;
 };
