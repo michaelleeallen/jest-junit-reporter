@@ -59,7 +59,6 @@ describe('reporter file name', () => {
   });
 
   it('should produce a report with desired file name', () => {
-    console.log(process.env.TEST_REPORT_FILENAME);
     reporter(mock);
     expect(fs.existsSync(`${cwd}/test-report.xml`)).toBeFalsy();
     expect(fs.existsSync(`${cwd}/${filename}`)).toBeTruthy();
