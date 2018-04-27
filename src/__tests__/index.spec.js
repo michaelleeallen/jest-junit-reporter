@@ -48,13 +48,19 @@ describe('reporter file name', () => {
 
   beforeEach(() => {
     // remove default and possible test report file if they exist.
-    fs.unlink(`${cwd}/test-report.xml`);
-    fs.unlink(`${cwd}/${filename}`);
+    fs.unlinkSync(`${cwd}/test-report.xml`);
+    try {
+      fs.unlinkSync(`${cwd}/${filename}`);
+    } catch (err) {
+      if (err.code !== 'ENOENT') {
+        throw err;
+      }
+    }
     process.env.TEST_REPORT_FILENAME = filename;
   });
 
   afterEach(() => {
-    fs.unlink(`${cwd}/${filename}`);
+    fs.unlinkSync(`${cwd}/${filename}`);
     delete process.env.TEST_REPORT_FILENAME;
   });
 
