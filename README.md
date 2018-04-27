@@ -18,7 +18,7 @@ In your `package.json` file include a `"jest"` config section and specify the `"
 
 For your Continuous Integration you can simply do:
 ```shell
-jest --ci --testResultsProcessor="./node_modules/jest-junit-reporter
+jest --ci --testResultsProcessor="./node_modules/jest-junit-reporter"
 ```
 
 The reporter will generate a `test-report.xml` file in the project root. If you need to specify a different location(e.g., for a CI server) then set the environment variable `TEST_REPORT_PATH` to the desired location. If you need to specify a different file name other than `test-report.xml`, you can set the environment variable `TEST_REPORT_FILENAME` to the desired file name.
